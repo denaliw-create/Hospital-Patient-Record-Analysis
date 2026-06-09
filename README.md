@@ -1,2 +1,3 @@
-# Work-Life-Balance-and-Longevity-Analysis
-The Work-Life Balance and Longevity dataset is a synthetic dataset containing data about 10,000 individuals. It displays and explores the relationship between age, occupation, daily time allocation (e.g., work, rest, sleep, exercise) and longevity. The data was designed to support analysis of how lifestyle decisions can affect lifespan. 
+# Patient-Encounter-Analysis
+This dataset contains records of 1000 patients treated at a hospital, including demographic information, medical conditions, treatments administered, medical expenses incurred, and current health status. You can explore several patterns, trends, and insights in patient care, recovery rates, and treatment efficacy using this dataset.
+This dataset can be used for exploratory data analysis.
