@@ -1,7 +1,7 @@
 # Hospital-Patient-Records Project 
-images.jpeg
+![](https://github.com/pragyy/Patient-Encounter-Analysis/blob/main/images.jpg)
 ## Overview
-The Hospital Patient Records dataset contains records of 1000 patients treated at a hospital, including demographic information, medical conditions, treatments administered, medical expenses incurred, and current health status. You can explore several patterns, trends, and insights in patient care, recovery rates, and treatment efficacy using this dataset. 
+The Hospital Patient Records dataset contains synthetic records of 1000 patients treated at a hospital, including demographic information, medical conditions, treatments administered, medical expenses incurred, and current health status. You can explore several patterns, trends, and insights in patient care, recovery rates, and treatment efficacy using this dataset. 
 
 
 # Installation and Setup
