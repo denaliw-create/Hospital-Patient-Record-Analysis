@@ -23,55 +23,111 @@ select distinct diagnosis from patients_raw;
 insert into procedure_type(proc_name)
 select distinct proc_name from patients_raw;
 
-insert into patients (pat_id, age, gender, diag_id, proc_id, cost, length_of_stay, readmission, outcome, satisfaction)
-SELECT distinct r.patient_id, r.age, r.gender,
-                d.diag_id, pr.proc_id, r.cost,
-                r.length_of_stay, r.readmission, r.outcome,
-                r.satisfaction from patients_raw r
+insert into patients (pat_id, age, gender, diag_id, proc_id, cost, length_of_stay, readmission, outcome, satisfaction);
+
+
+SELECT distinct * from patients_raw r
                 join diagnosis d on d.diag_name = r.diagnosis
                 join procedure_type pr on pr.proc_name = r.proc_name;
 
-# Rows were included using imports from the dataset csv.
-
-#Question 1: What are the most and least common diagnoses among patients?
+# Question 1: What are the most and least common diagnoses among patients?
 select d.diag_name, count(d.diag_name) as diagnosis_count from patients p
 join diagnosis d on d.diag_id = p.diag_id
 group by d.diag_id
 order by diagnosis_count desc;
 
-
-#Question 2: What are the most and least common procedure(s) among patients who were at the hospital?
+# Question 2: What are the most and least common procedure(s) among patients who were at the hospital?
 select pt.proc_name, count(pt.proc_name) as procedure_count from patients p
 join procedure_type pt on pt.proc_id = p.proc_id
 group by pt.proc_id
 order by procedure_count desc;
 
 
-#Question 3: Which diagnoses are associated with the highest and lowest average costs? Highest and lowest lengths of stay?
+# Question 3: Which diagnoses are associated with the highest and lowest average costs? Highest and lowest lengths of stay?
 select d.diag_name, round(avg(p.length_of_stay),2) as avg_length_of_stay,
 round(avg(p.cost),2) as avg_cost from patients p
 join diagnosis d on d.diag_id = p.diag_id
 group by d.diag_name
 order by avg_cost desc;
 
-#Question 4: Which procedures are associated with the highest and lowest costs?
-select pt.proc_name, round(avg(p.cost),2) as avg_cost from patients p
-join procedure_type pt on p.proc_id = pt.proc_id
-group by pt.proc_name
-order by avg_cost desc;
-
-#Question 5: Which diagnoses are associated with the highest and lowest average lengths of stay?
-select d.diag_name, round(avg(p.length_of_stay),2) as avg_length_of_stay from diagnosis d
-join patients p on d.diag_id = p.diag_id
-group by d.diag_name
-order by avg_length_of_stay desc;
-
-#Question 6: Which diagnoses have the highest and lowest readmission rates?
+# Question 4: Which diagnoses have the highest and lowest readmission rates?
 select
     diag_name,
-    ROUND(SUM(case when readmission = 'Yes' then 1 else 0 end) / COUNT(*) * 100, 2) as readmission_rate
+    ROUND(SUM(case when readmission = 'Yes' then 1 else 0 end) / COUNT(1) * 100, 2) as readmission_rate
 from patients p
          join diagnosis d on p.diag_id = d.diag_id
 group by d.diag_name
 order by readmission_rate desc;
 
+# Question 5: Do readmitted patients tend to report lower satisfaction?
+select readmission, count(pat_id) as patient_count, round(avg(satisfaction),2) as avg_satisfaction from patients
+group by readmission order by avg_satisfaction desc;
+
+# Question 6: Does age predict readmission?
+select age, count(age) as age_count, readmission from patients
+where readmission = 'Yes'
+group by age, readmission order by age_count desc;
+
+SELECT
+    CASE
+        WHEN age < 30 THEN 'Under 30'
+        WHEN age BETWEEN 30 AND 49 THEN '30s-40s'
+        WHEN age BETWEEN 50 AND 69 THEN '50s-60s'
+        WHEN age >= 70 THEN '70+'
+        END AS age_group,
+    ROUND(SUM(CASE WHEN readmission = 'Yes' THEN 1 ELSE 0 END) / COUNT(*) * 100, 2) as readmission_rate
+FROM patients
+GROUP BY age_group
+ORDER BY readmission_rate desc;
+
+# Question 7: Which procedures tend to have the best outcomes?
+select pt.proc_name, p.outcome, count(p.pat_id) as patient_count,
+round(sum(case when p.outcome = 'Recovered' then 1 else 0 end) / count(*) * 100, 2) as recovery_rate
+from procedure_type pt
+join patients p on pt.proc_id = p.proc_id
+group by pt.proc_name, p.outcome
+order by recovery_rate desc;
+
+# Question 8a: What patient characteristics or conditions are associated with lower satisfaction? (Gender)
+select p.gender, avg(p.satisfaction) as avg_satisfaction
+from patients p
+group by gender
+order by avg_satisfaction;
+
+# Question 8b: What patient characteristics or conditions are associated with lower satisfaction? (Age)
+select case
+when  age < 30 then 'Under 30'
+when age between 30 AND 49 then '30s-40s'
+when age between 50 AND 69 then '50s-60s'
+when age >= 70 THEN '70+'
+           end as age_group, round(avg(satisfaction),2) as avg_satisfaction
+from patients
+group by age_group
+order by avg_satisfaction;
+
+# Question 8c: What patient characteristics or conditions are associated with lower satisfaction? (Cost)
+select case
+when cost between 100 and 2000 then 'Low'
+when cost between 3000 and 10000 then 'Medium'
+when cost between 12000 and 25000 then 'High'
+end as cost_ranking, round(avg(satisfaction),2) as avg_satisfaction
+from patients
+group by cost_ranking
+order by avg_satisfaction;
+
+# Question 8d: Which patient characteristics or conditions are associated with lower satisfaction? (Outcome)
+select outcome, avg(satisfaction) as avg_satisfaction from patients
+group by outcome order by avg_satisfaction desc;
+
+# Question 8e: Which patient characteristics or conditions are associated with lower satisfaction? (Diagnosis)
+select d.diag_name as diagnosis_name, avg(p.satisfaction) as avg_satisfaction from patients p
+join diagnosis d on d.diag_id = p.diag_id
+group by diagnosis_name
+order by avg_satisfaction desc;
+
+
+# Question 8f: Which patient characteristics or conditions are associated with lower satisfaction? (Procedure)
+select pt.proc_name, avg(satisfaction) as avg_satisfaction from patients p
+join procedure_type pt on pt.proc_id = p.proc_id
+group by proc_name
+order by avg_satisfaction desc;
