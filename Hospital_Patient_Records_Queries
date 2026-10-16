@@ -1,0 +1,77 @@
+# database creation
+create database hospital;
+use hospital;
+create table diagnosis (diag_id int auto_increment primary key, diag_name varchar(50));
+create table procedure_type (proc_id int auto_increment primary key, proc_name varchar(50));
+create table patients
+(pat_id int auto_increment primary key, age int,
+gender enum('Male', 'Female'), diag_id int,
+proc_id int, cost int,
+length_of_stay int, readmission enum('Yes', 'No'),
+outcome enum ('Recovered', 'Stable'), satisfaction int,
+foreign key (diag_id) references diagnosis(diag_id),
+foreign key (proc_id) references procedure_type(proc_id));
+
+
+use hospital;
+
+select distinct diagnosis from patients_raw;
+
+insert into diagnosis(diag_name)
+select distinct diagnosis from patients_raw;
+
+insert into procedure_type(proc_name)
+select distinct proc_name from patients_raw;
+
+insert into patients (pat_id, age, gender, diag_id, proc_id, cost, length_of_stay, readmission, outcome, satisfaction)
+SELECT distinct r.patient_id, r.age, r.gender,
+                d.diag_id, pr.proc_id, r.cost,
+                r.length_of_stay, r.readmission, r.outcome,
+                r.satisfaction from patients_raw r
+                join diagnosis d on d.diag_name = r.diagnosis
+                join procedure_type pr on pr.proc_name = r.proc_name;
+
+# Rows were included using imports from the dataset csv.
+
+#Question 1: What are the most and least common diagnoses among patients?
+select d.diag_name, count(d.diag_name) as diagnosis_count from patients p
+join diagnosis d on d.diag_id = p.diag_id
+group by d.diag_id
+order by diagnosis_count desc;
+
+
+#Question 2: What are the most and least common procedure(s) among patients who were at the hospital?
+select pt.proc_name, count(pt.proc_name) as procedure_count from patients p
+join procedure_type pt on pt.proc_id = p.proc_id
+group by pt.proc_id
+order by procedure_count desc;
+
+
+#Question 3: Which diagnoses are associated with the highest and lowest average costs? Highest and lowest lengths of stay?
+select d.diag_name, round(avg(p.length_of_stay),2) as avg_length_of_stay,
+round(avg(p.cost),2) as avg_cost from patients p
+join diagnosis d on d.diag_id = p.diag_id
+group by d.diag_name
+order by avg_cost desc;
+
+#Question 4: Which procedures are associated with the highest and lowest costs?
+select pt.proc_name, round(avg(p.cost),2) as avg_cost from patients p
+join procedure_type pt on p.proc_id = pt.proc_id
+group by pt.proc_name
+order by avg_cost desc;
+
+#Question 5: Which diagnoses are associated with the highest and lowest average lengths of stay?
+select d.diag_name, round(avg(p.length_of_stay),2) as avg_length_of_stay from diagnosis d
+join patients p on d.diag_id = p.diag_id
+group by d.diag_name
+order by avg_length_of_stay desc;
+
+#Question 6: Which diagnoses have the highest and lowest readmission rates?
+select
+    diag_name,
+    ROUND(SUM(case when readmission = 'Yes' then 1 else 0 end) / COUNT(*) * 100, 2) as readmission_rate
+from patients p
+         join diagnosis d on p.diag_id = d.diag_id
+group by d.diag_name
+order by readmission_rate desc;
+
