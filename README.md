@@ -12,9 +12,15 @@ After installing a DBMS or IDE, the next step is to create databases using the f
 
 <img width="1011" height="565" alt="Screenshot 2026-10-15 at 8 08 25 PM" src="https://github.com/user-attachments/assets/58a05472-4e2d-4657-bc72-87187f8d46a8" />
 
+Next, you can use the provided https://github.com/denaliw-create/Hospital-Patient-Record-Analysis/tree/7d1a31bdb6b7007dfb3f28b4d3e3550d1b3deb68/dataset dataset
+
 
 
 ## Tools/Applications Used: 
   * Microsoft Excel - Version 16.114
-  * DataGrip 2026.1.4 (MySQL)
+  * DataGrip 2026.1.4 
   * Visual Studio Code 5 - Version: 1.136.1 (Universal)
+  * Tableau Desktop - Version 2026.2.1
+
+## Programming Languages & Libraries Used:
+  * SQL, Python, Pandas
