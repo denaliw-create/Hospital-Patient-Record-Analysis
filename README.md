@@ -22,7 +22,7 @@ Next, you can use the provided [dataset](https://github.com/denaliw-create/Hospi
 
 ## Tools/Applications Used: 
   * Microsoft Excel - Version 16.114
-  * DataGrip 2026.1.4 
+  * DataGrip - Version 2026.1.4
   * Visual Studio Code 5 - Version: 1.136.1 (Universal)
   * Tableau Desktop - Version 2026.2.1
 
