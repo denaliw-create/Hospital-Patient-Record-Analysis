@@ -12,7 +12,7 @@ After installing a DBMS or IDE, the next step is to create databases using the f
 
 <img width="1011" height="565" alt="Screenshot 2026-10-15 at 8 08 25 PM" src="https://github.com/user-attachments/assets/58a05472-4e2d-4657-bc72-87187f8d46a8" />
 
-Next, you can use the provided https://github.com/denaliw-create/Hospital-Patient-Record-Analysis/tree/7d1a31bdb6b7007dfb3f28b4d3e3550d1b3deb68/dataset dataset
+Next, you can use the provided [dataset][(https://docs.github.com](https://github.com/denaliw-create/Hospital-Patient-Record-Analysis/tree/fe37dec183c5ba10229e575c3568a2c520728a23/dataset)).
 
 
 
