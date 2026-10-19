@@ -27,33 +27,50 @@ Next, you can use the [provided](https://github.com/denaliw-create/Hospital-Pati
 
 ## Key Findings
 
-### Correlation Analysis
-- **Age and satisfaction** had the strongest correlation in the dataset 
-  (r = -0.75), meaning older patients reported significantly lower 
-  satisfaction scores
-- **Cost and satisfaction** showed a moderate negative correlation 
-  (r = -0.47), suggesting higher-cost encounters are associated with 
-  lower patient satisfaction
-- **Age and cost** showed a moderate positive correlation (r = 0.30), 
-  indicating older patients tend to incur higher medical costs
-- Correlations between length of stay and other variables were weak 
-  across the board, suggesting LOS is not a strong predictor of cost, 
-  satisfaction, or age in this dataset
+### Diagnoses & Procedures
+- The most common diagnoses were Heart Attack and Fractured Leg, 
+  each with 67 cases. The least common was Osteoarthritis with 64 cases.
+- Diagnosis counts were relatively evenly distributed across all 
+  15 conditions, with a difference of only 3 cases between the most 
+  and least common.
+
+### Cost & Utilization
+- Cancer had the highest average cost ($25,000) and longest average 
+  length of stay (42.7 days). Prostate Cancer was a close second 
+  at $20,000 and 41.6 days.
+- There is a weak positive correlation (r = 0.11) between length of 
+  stay and cost, suggesting that LOS alone is not a strong driver 
+  of hospital costs in this dataset.
 
 ### Readmission
 - Heart Attack (100%) and Heart Disease (98.46%) had the highest 
-  readmission rates by far
-- 8 diagnoses had 0% readmission rates, including Hypertension, 
-  Allergic Reaction, and Osteoarthritis
-- Readmitted patients reported lower average satisfaction (3.1) 
-  compared to non-readmitted patients (3.8)
+  readmission rates among all diagnoses.
+- Readmitted patients reported lower average satisfaction (3.11) 
+  compared to non-readmitted patients (3.78), a difference of 0.67.
+- Age is a weak predictor of readmission (r = 0.22).
 
-### Cost and Length of Stay
-- Cancer ($25,000) and Prostate Cancer ($20,000) were associated 
-  with the highest average costs
-- Allergic Reaction ($100) and Fractured Arm ($500) had the lowest 
-  average costs
-- Length of stay followed a similar pattern to cost by diagnosis
+### Outcomes
+- Procedures such as Cast and Physical Therapy, Appendectomy, and 
+  X-Ray and Splint had 100% recovery rates.
+- Note: Each procedure maps exclusively to one outcome in this 
+  dataset, which is characteristic of synthetic data and limits 
+  the depth of outcome analysis.
+- Cost very weakly correlates with better outcomes (r = .25).
+
+### Patient Satisfaction
+- Age was the strongest predictor of satisfaction. Patients under 
+  30 reported an average satisfaction of 5.0, while patients aged 
+  70 or older reported the lowest average of 2.4 — a difference 
+  of over 2.6 points.
+- Readmitted patients reported lower satisfaction (3.11) compared 
+  to non-readmitted patients (3.78).
+- Procedure type was associated with satisfaction scores. Patients 
+  who received an X-Ray and Splint or Epinephrine Injection reported 
+  the highest average satisfaction (5.0), while those who received 
+  a CT Scan and Medication or Cardiac Catheterization reported the 
+  lowest (2.0).
+
+
 
 ### Dataset Limitations
 - Each procedure maps exclusively to one outcome (100% Recovered or 
