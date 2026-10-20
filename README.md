@@ -25,6 +25,10 @@ Next, you can use the [provided](https://github.com/denaliw-create/Hospital-Pati
 ## Programming Languages & Libraries Used:
   * SQL, Python, Pandas
 
+## Correlation Analysis Steps
+1. Place `Patient_Encounter_Analysis_Raw.csv` in an accessible folder in VS Code or any other Python-supported IDE.
+2. Run `Hospital_Patient_Records_Correlations.py`
+
 ## Key Findings
 
 ### Diagnoses & Procedures
