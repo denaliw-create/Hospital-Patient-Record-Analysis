@@ -23,7 +23,9 @@ Next, you can use the [provided](https://github.com/denaliw-create/Hospital-Pati
   * Tableau Desktop - Version 2026.2.1
 
 ## Programming Languages & Libraries Used:
-  * SQL, Python, Pandas
+  * SQL was used for creating queries and creating the databases.
+  * Python was the programming language utilized for its libraries. 
+  * Pandas was the Python library used for identifying correlations between different columns.
 
 ## Correlation Analysis Steps
 1. Place `Patient_Encounter_Analysis_Raw.csv` in an accessible folder in VS Code or any other Python-supported IDE.
@@ -74,7 +76,8 @@ Next, you can use the [provided](https://github.com/denaliw-create/Hospital-Pati
   a CT Scan and Medication or Cardiac Catheterization reported the 
   lowest (2.0).
 
-
+### Actionable Insights
+- Due to the nature of this dataset, the data and findings may not be realistic. However, if this were a real-world dataset with genuine findings, a hospital's administrative team could investigate satisfaction scores below 5 more deeply; confounding variables not in the dataset could also affect satisfaction scores, such as how medical staff treated patients. Additionally, the most common diagnoses have been identified as heart attacks and leg fractures. Consequently, public health institutions and employees can learn about patients' social determinants of health (SDOH), and empower them to make decisions that may help avoid the aforementioned diagnoses.
 
 ### Dataset Limitations
 - Each procedure maps exclusively to one outcome (100% Recovered or 
