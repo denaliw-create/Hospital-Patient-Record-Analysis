@@ -1,7 +1,7 @@
 # Hospital-Patient-Records Project 
 <img width="554" height="554" alt="images" src="https://github.com/user-attachments/assets/cf7039a2-6060-4124-81b7-5433a2feff6d" />
 
-## Overview
+# Overview
 The [Hospital Patient Records dataset](https://www.kaggle.com/datasets/blueblushed/hospital-dataset-for-practice/data) contains synthetic records of 1000 patients treated at a hospital, including demographic information, medical conditions, treatments administered, medical expenses incurred, and current health status. You can explore several patterns, trends, and insights in patient care, recovery rates, and treatment efficacy using this dataset. 
 
 
