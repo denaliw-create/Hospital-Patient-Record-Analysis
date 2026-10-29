@@ -83,5 +83,5 @@ Next, you can use the [provided](https://github.com/denaliw-create/Hospital-Pati
 
 ### Dataset Limitations
 - Each procedure maps exclusively to one outcome (100% Recovered or 
-  100% Stable), which is characteristic of synthetic data and limits 
-  outcome analysis
+  100% Stable), which is frequently observed in synthetic data and limits 
+  outcome analysis.
