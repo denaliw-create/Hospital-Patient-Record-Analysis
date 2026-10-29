@@ -77,7 +77,9 @@ Next, you can use the [provided](https://github.com/denaliw-create/Hospital-Pati
   lowest (2.0).
 
 ### Actionable Insights
-- Due to the nature of this dataset, the data and findings may not be realistic. However, if this were a real-world dataset with genuine findings, a hospital's administrative team could investigate satisfaction scores below 5 more deeply; confounding variables not in the dataset could also affect satisfaction scores, such as how medical staff treated patients. - Additionally, the most common diagnoses have been identified as heart attacks and leg fractures. Consequently, medical institutions and employees can learn about patients' social determinants of health (SDOH) and empower them to make decisions that may help avoid the aforementioned diagnoses.
+- Due to the nature of this dataset, the data and findings may not be realistic. However, if this were a real-world dataset with genuine findings, a hospital's administrative team could investigate satisfaction scores below 5 more deeply; confounding variables not in the dataset could also affect satisfaction scores, such as how medical staff treated patients. 
+
+- Additionally, the most common diagnoses have been identified as heart attacks and leg fractures. Consequently, medical institutions and employees can learn about patients' social determinants of health (SDOH) and empower them to make decisions that may help avoid the aforementioned diagnoses.
 
 ### Dataset Limitations
 - Each procedure maps exclusively to one outcome (100% Recovered or 
